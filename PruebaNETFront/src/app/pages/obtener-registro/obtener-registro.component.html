@@ -1,0 +1,75 @@
+<div class="container py-5 text-center">
+    <h1 class="display-4 font-weight-bold">Obtener producto</h1>
+</div>
+<br>
+<form [formGroup]="getForm">
+    <div class="mb-3">
+        <label for="Inputid" class="form-label">ID del Producto</label>
+        <input formControlName="id" type="number" class="form-control" id="Inputid" aria-describedby="idHelp">
+        <div *ngIf="id.invalid && (id.dirty || id.touched)" class="text-danger">
+          <div *ngIf="id.errors?.['required']">El id es requerido.</div>
+          <div *ngIf="id.errors?.['min']">El id debe ser un valor mayor a 0.</div>
+        </div>
+    </div>
+    <button type="submit" (click)="getProducto()" class="btn btn-primary">Obtener producto</button>
+</form>
+<br>
+<div *ngIf="this.mostrarRegistro">
+    <div class="margen">
+        <div class="mb-3">
+            <label for="Inputid" class="form-label">ID del Producto</label>
+            <input type="text" class="form-control" id="InputID" aria-describedby="NameHelp" [value]="idChange"disabled>
+          </div>
+          <div class="mb-3">
+            <label for="Inputid" class="form-label">Descuento del Producto</label>
+            <input type="text" class="form-control" id="InputDiscount" aria-describedby="NameHelp"[value]="DiscountChange" disabled>
+          </div> 
+          <div class="mb-3">
+            <label for="Inputid" class="form-label">Precio final del Producto</label>
+            <input type="text" class="form-control" id="InputFinalPrice" aria-describedby="NameHelp"[value]="FinalPriceChange" disabled>
+          </div>  
+    </div>
+    <form [formGroup]="registroForm">
+        <div class="mb-3">
+        <label for="InputName" class="form-label">Name del Producto</label>
+        <input formControlName="Name" type="text" class="form-control" id="InputName" aria-describedby="NameHelp" [ngModel]="nombreChange">
+        <div *ngIf="Name.invalid && (Name.dirty || Name.touched)" class="text-danger">
+            <div *ngIf="Name.errors?.['required']">El Name es requerido.</div>
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="InputStatus" class="form-label">Status del producto</label>
+            <select formControlName="Status" class="form-select" aria-label="Default select example" [ngModel]="statusChange">
+                <option value="1">Inactive</option>
+                <option value="2">Active</option>
+            </select>
+            <div *ngIf="Status.invalid && (Status.dirty || Status.touched)" class="text-danger">
+            <div *ngIf="Status.errors?.['required']">El Status es requerido.</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="InputStock" class="form-label">Stock del Producto</label>
+            <input formControlName="Stock" type="number" class="form-control" id="InputStock" aria-describedby="StockHelp" [ngModel]="stockChange">
+            <div *ngIf="Stock.invalid && (Stock.dirty || Stock.touched)" class="text-danger">
+            <div *ngIf="Stock.errors?.['required']">El Stock es requerido.</div>
+            <div *ngIf="Stock.errors?.['min']">El Stock debe ser un valor positivo.</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="InputDescription" class="form-label">Description del producto</label>
+            <input formControlName="Description" type="text" class="form-control" id="InputDescription" aria-describedby="DescriptionHelp"[ngModel]="descripcionChange">
+            <div *ngIf="Description.invalid && (Description.dirty || Description.touched)" class="text-danger">
+            <div *ngIf="Description.errors?.['required']">La Description es requerida.</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="InputPrice" class="form-label">Price del Producto</label>
+            <input formControlName="Price" type="number" class="form-control" id="InputPrice" aria-describedby="PriceHelp"[ngModel]="priceChange">
+            <div *ngIf="Price.invalid && (Price.dirty || Price.touched)" class="text-danger">
+            <div *ngIf="Price.errors?.['required']">El Price es requerido.</div>
+            <div *ngIf="Price.errors?.['min']">El Price debe ser un valor mayor a 0.</div>
+            </div>
+        </div>
+        <button type="submit" (click)="modificarProducto()" class="btn btn-primary">Guardar producto</button>
+    </form>
+</div>
